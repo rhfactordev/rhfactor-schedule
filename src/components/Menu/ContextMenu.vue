@@ -1,7 +1,7 @@
 <template>
   <q-list bordered class="rounded-borders">
-    <div v-for="({label, icon, inset, children}, index) in menus" :key="index">
-      <q-item v-if="children == null || children.length == 0" :to="to" v-ripple clickable>
+    <div v-for="({label, icon, inset, path, children}, index) in menus" :key="index">
+      <q-item v-if="children == null || children.length == 0" :to="path" v-ripple clickable>
         <q-item-section avatar>
           <q-icon :name="icon"/>
         </q-item-section>
@@ -16,7 +16,7 @@
           :icon="icon"
           :label="label"
       >
-        <q-item v-for="({label: cLabel, to}, cIndex) in children" :key="cIndex" :to="to" v-ripple clickable>
+        <q-item v-for="({label: cLabel, path: cPath}, cIndex) in children" :key="cIndex" :to="cPath" v-ripple clickable>
           <q-item-section>
             <q-item-label>{{ cLabel }}</q-item-label>
           </q-item-section>
@@ -27,19 +27,17 @@
 </template>
 
 <script setup>
+import {admin} from '@/router/admin.js'
+import {user} from '@/router/user.js'
 
 const menus = [
-  {to: '/schedules/add', icon: 'today', label: 'Agendar', inset: 0},
-  {to: '/schedules', icon: 'calendar_month', label: 'Meus agendamentos', inset: 0},
-  {to: '/profile', icon: 'person', label: 'Meu perfil', inset: 0},
+  ...user,
   {
     icon: 'settings', label: 'Configurações', inset: 0, children: [
-      {to: '/settings/users', label: 'Usuários'},
-      {to: '/settings/unit', label: 'Unidades'},
-      {to: '/settings/time', label: 'Tempo'},
-      {to: '/settings/rooms', label: 'Quadras'},
-      {to: '/settings/clients', label: 'Clientes'}
+      ...admin
     ]
   },
 ]
+
+console.log(admin)
 </script>
