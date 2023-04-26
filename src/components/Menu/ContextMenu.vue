@@ -39,5 +39,4 @@ const menus = [
   },
 ]
 
-console.log(admin)
 </script>

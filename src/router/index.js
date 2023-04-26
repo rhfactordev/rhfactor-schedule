@@ -12,17 +12,13 @@ const routes = [
     ...user
 ]
 
-console.log('routes:', routes)
-
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
 
-
+/*
 router.beforeEach((to, from, next) => {
-
-    console.log(to, from)
 
   // const isAuthenticated = true
   // const hasAuth = to.meta.hasAuth != null && to.meta.hasAuth
@@ -31,5 +27,7 @@ router.beforeEach((to, from, next) => {
   // else
       next()
 })
+
+*/
 
 export default router
